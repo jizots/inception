@@ -1,3 +1,5 @@
+# dockerの.ymlファイルの使い方と、makefileでどのように.ymlファイルを実行するか、を知る
+
 .PHONY: setup up d b ps node
 
 setup:
@@ -7,8 +9,9 @@ setup:
 d:
 	docker compose down
 
+# targetに対して、コマンドを素直に記述してるだけ。依存関係はない。
 up:
-	docker compose -f /Users/sotanaka/inception/practice/docker-compose.yml up -d
+	docker compose -f ./src/docker-compose.yml up -d
 
 ps:
 	docker compose ps
