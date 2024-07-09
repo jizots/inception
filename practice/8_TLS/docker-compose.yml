@@ -1,0 +1,10 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs
+      - ./nginx.conf:/etc/nginx/conf.d/dafault.conf
+      - ./html:/usr/share/nginx/html
+
