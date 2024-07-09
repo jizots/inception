@@ -1,2 +1,4 @@
 .DS_Store
 # .env will delete when upload to 42 repo
+*.crt
+*.key

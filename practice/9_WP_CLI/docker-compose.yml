@@ -37,6 +37,7 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
+    entrypoint: ["./entrypoint.sh"]
     ports:
       - 8080:80
 
