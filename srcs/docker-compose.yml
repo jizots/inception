@@ -1,0 +1,41 @@
+services:
+  ${NGINX_SERVICE_NAME}:
+    build:
+      image: ${NGINX_SERVICE_NAME}
+      context: .
+      dockerfile: ./requirements/nginx/Dockerfile
+    ports:
+      - "443:443"
+
+  mariadb:
+    ${MARIADB_SERVICE_NAME}:
+      image: ${MARIADB_SERVICE_NAME}
+      context: .
+      dockerfile: ./requirements/mariadb/Dockerfile
+    networks:
+      - net_inception
+    volumes:
+      - db_website_files:/var/lib/mysql
+
+  ${WORDPRESS_SERVICE_NAME}:
+    build:
+      image: ${WORDPRESS_SERVICE_NAME}
+      context: .
+      dockerfile: ./requirements/wordpress/Dockerfile
+    networks:
+      - net_inception
+    volumes:
+      - db_wordpress:/var/www/html/
+
+# A volume that contains your WordPress database.
+# A second volume that contains your WordPress website files.
+volumes:
+  db_wordpress:
+    driver: local # cleary define
+  db_website_files:
+    driver: local # cleary define
+
+# A docker-network that establishes the connection between your containers.(Aってことは、1つってことか？)
+networks:
+  net_inception:
+    driver: bridge # cleary define
