@@ -4,3 +4,6 @@ FROM debian:12.5-slim
 
 # A Docker container that contains MariaDB only without nginx.
 # A volume that contains your WordPress database.(.yml?)
+
+# For verify command
+CMD ["sleep", "infinity"]

@@ -7,7 +7,7 @@ up:
 	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
 
 down:
-	docker compose -f $(DOCKER_COMPOSE_FILE) down -d
+	docker compose -f $(DOCKER_COMPOSE_FILE) down
 
 ps:
-	docker compose -f $(DOCKER_COMPOSE_FILE) ps -d
+	docker compose -f $(DOCKER_COMPOSE_FILE) ps

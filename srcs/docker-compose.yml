@@ -1,27 +1,27 @@
 services:
-  ${NGINX_SERVICE_NAME}:
+  nginx_inception:
     build:
-      image: ${NGINX_SERVICE_NAME}
       context: .
       dockerfile: ./requirements/nginx/Dockerfile
+    image: nginx_inception
     ports:
       - "443:443"
 
-  mariadb:
-    ${MARIADB_SERVICE_NAME}:
-      image: ${MARIADB_SERVICE_NAME}
+  mariadb_inception:
+    build:
       context: .
       dockerfile: ./requirements/mariadb/Dockerfile
+    image: mariadb_inception
     networks:
       - net_inception
     volumes:
       - db_website_files:/var/lib/mysql
 
-  ${WORDPRESS_SERVICE_NAME}:
+  wordpress_inception:
     build:
-      image: ${WORDPRESS_SERVICE_NAME}
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
+    image: wordpress_inception
     networks:
       - net_inception
     volumes:
