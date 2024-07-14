@@ -4,8 +4,8 @@ FROM debian:12.5-slim
 
 # A Docker container that contains NGINX with TLSv1.2 or TLSv1.3 only.
 RUN apt-get update
-## install nginx
-RUN apt-get -y install nginx
+## install nginx with specific version
+RUN apt-get -y install nginx=1.22.*
 ## install openssl
 RUN apt-get -y install openssl
 ## make a directory for the SSL certificate
