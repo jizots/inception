@@ -45,9 +45,17 @@ services:
 # A second volume that contains your WordPress website files.
 volumes:
   db_wordpress:
-    driver: local # cleary define
+    driver: local
+    driver_opts:
+      type: none
+      device: /tmp/sotanaka/data
+      o: bind
   db_website_files:
-    driver: local # cleary define
+    driver: local
+    driver_opts:
+      type: none
+      device: /tmp/sotanaka/data
+      o: bind
 
 # A docker-network that establishes the connection between your containers.(Aってことは、1つってことか？)
 networks:
