@@ -1,0 +1,8 @@
+# /etc/mysql/my.cnfは/etc/mysql/mariadb.cnfへのリンクになってる
+# /etc/mysql/conf.d/mysql.cnf is empty file(default)
+# /etc/mysql/conf.d//*.cnfにはファイルが2つ
+# /etc/mysql/mariadb.conf.d/*.cnfにはファイルが8つくらい
+
+# portを明示的に設定する。デフォルトでも3306だけど。。
+[mariadbd]
+port = 3306

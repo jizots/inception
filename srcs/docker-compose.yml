@@ -1,5 +1,6 @@
 services:
   nginx_inception:
+    restart: always
     build:
       context: .
       dockerfile: ./requirements/nginx/Dockerfile
@@ -8,16 +9,27 @@ services:
       - "443:443"
 
   mariadb_inception:
+    restart: always
     build:
       context: .
       dockerfile: ./requirements/mariadb/Dockerfile
+      args:
+        - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+        - MARIADB_DATABASE=${MARIADB_DATABASE}
+        - MARIADB_USER1=${MARIADB_USER1}
+        - MARIADB_USER1_PASSWORD=${MARIADB_USER1_PASSWORD}
     image: mariadb_inception
     networks:
       - net_inception
     volumes:
       - db_website_files:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb -e 'SELECT 1;'"] #常に成功するコマンド
+      interval: 10s
+      retries: 5
 
   wordpress_inception:
+    restart: always
     build:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
@@ -26,6 +38,8 @@ services:
       - net_inception
     volumes:
       - db_wordpress:/var/www/html/
+    depends_on:
+      - mariadb_inception
 
 # A volume that contains your WordPress database.
 # A second volume that contains your WordPress website files.
