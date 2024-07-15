@@ -31,6 +31,10 @@ RUN mkdir /home/mysql &&\
     usermod -s /bin/bash mysql &&\
     echo 'export PATH=$PATH:/usr/sbin' >> /home/mysql/.bashrc
 
+## clean up to reduce the size of the image
+RUN apt-get clean &&\
+    rm -rf /var/lib/apt/lists/*
+
 ## run services background.
 USER mysql
 ENTRYPOINT ["mariadbd"]
