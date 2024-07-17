@@ -28,7 +28,7 @@ services:
     volumes:
       - db_website_files:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "mariadb -e 'SELECT 1;'"] #MariaDBが起動していれば常に成功するコマンド
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost"] #MariaDBが起動していれば常に成功するコマンド
       interval: 10s
       retries: 5
 
@@ -39,10 +39,8 @@ services:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
       args:
-        - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
         - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
         - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-        - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
     image: wordpress_inception
     networks:
       - net_inception
@@ -51,8 +49,9 @@ services:
     depends_on:
       mariadb_inception:
         condition: service_healthy # mariadb_inceptionが正常に動作している場合にのみwordpress_inceptionを起動する
-    environment: #デプロイでは不要かも？
+    environment:
       - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_HOST_NAMEONLY=${WORDPRESS_DB_HOST_NAMEONLY}
       - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
       - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
       - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
