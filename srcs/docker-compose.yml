@@ -1,13 +1,17 @@
 services:
+### nginxコンテナの設定 ###
   nginx_inception:
     restart: always
     build:
       context: .
       dockerfile: ./requirements/nginx/Dockerfile
     image: nginx_inception
+    networks:
+      - net_inception
     ports:
       - "443:443"
 
+### MariaDBコンテナの設定 ###
   mariadb_inception:
     restart: always
     build:
@@ -24,22 +28,34 @@ services:
     volumes:
       - db_website_files:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "mariadb -e 'SELECT 1;'"] #常に成功するコマンド
+      test: ["CMD-SHELL", "mariadb -e 'SELECT 1;'"] #MariaDBが起動していれば常に成功するコマンド
       interval: 10s
       retries: 5
 
+### WordPressコンテナの設定 ###
   wordpress_inception:
     restart: always
     build:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
+      args:
+        - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+        - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+        - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+        - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
     image: wordpress_inception
     networks:
       - net_inception
     volumes:
       - db_wordpress:/var/www/html/
     depends_on:
-      - mariadb_inception
+      mariadb_inception:
+        condition: service_healthy # mariadb_inceptionが正常に動作している場合にのみwordpress_inceptionを起動する
+    environment: #デプロイでは不要かも？
+      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
 
 # A volume that contains your WordPress database.
 # A second volume that contains your WordPress website files.
@@ -48,13 +64,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /tmp/sotanaka/data
+      device: /tmp/sotanaka/data # デプロイでは/home/sotanaka/dataに変更
       o: bind
   db_website_files:
     driver: local
     driver_opts:
       type: none
-      device: /tmp/sotanaka/data
+      device: /tmp/sotanaka/data # 同上
       o: bind
 
 # A docker-network that establishes the connection between your containers.(Aってことは、1つってことか？)
