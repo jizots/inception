@@ -4,7 +4,7 @@ DOCKER_COMPOSE_DIR = ./srcs
 DOCKER_COMPOSE_FILE = $(DOCKER_COMPOSE_DIR)/docker-compose.yml
 DOCKER_VOLUME_DIR = /tmp/sotanaka/data
 
-up:
+up: build
 	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
 
 down:
@@ -12,3 +12,6 @@ down:
 
 ps:
 	docker compose -f $(DOCKER_COMPOSE_FILE) ps
+
+build:
+	docker compose -f $(DOCKER_COMPOSE_FILE) build --no-cache
