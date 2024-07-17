@@ -38,3 +38,14 @@ RUN apt-get clean &&\
 ## run services background.
 USER mysql
 ENTRYPOINT ["mariadbd"]
+
+## packages include in "apt-get install mariadb-server"
+# galera-4 gawk iproute2 libatm1 libbpf1 libcap2-bin libcgi-fast-perl libcgi-pm-perl libclone-perl libconfig-inifiles-perl
+# libdaxctl1 libdbd-mariadb-perl libdbi-perl libelf1 libencode-locale-perl libfcgi-bin libfcgi-perl libfcgi0ldbl
+# libgdbm-compat4 libgdbm6 libhtml-parser-perl libhtml-tagset-perl libhtml-template-perl libhttp-date-perl libhttp-message-perl
+# libio-html-perl liblwp-mediatypes-perl liblzo2-2 libmariadb3 libmnl0 libmpfr6 libncurses6 libndctl6 libnsl2 libnuma1
+# libpam-cap libperl5.36 libpmem1 libpopt0 libreadline8 libregexp-ipv6-perl libsigsegv2 libsnappy1v5 libterm-readkey-perl
+# libtimedate-perl libtirpc-common libtirpc3 liburi-perl liburing2 libwrap0 libxtables12 lsof mariadb-client
+# mariadb-client-core mariadb-common mariadb-plugin-provider-bzip2 mariadb-plugin-provider-lz4 mariadb-plugin-provider-lzma
+# mariadb-plugin-provider-lzo mariadb-plugin-provider-snappy mariadb-server-core mysql-common netbase perl perl-modules-5.36 pv
+# readline-common rsync socat
