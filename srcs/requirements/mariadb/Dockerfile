@@ -3,8 +3,8 @@
 FROM debian:12.5-slim
 
 # A Docker container that contains MariaDB only without nginx.
-RUN apt-get update &&\
-    apt-get -y install mariadb-server
+RUN apt-get update
+RUN apt-get -y install mariadb-server
 
 ## Recieve the environment variables from the docker-compose.yml file.
 ARG MARIADB_ROOT_PASSWORD
