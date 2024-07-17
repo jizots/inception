@@ -64,13 +64,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /tmp/sotanaka/data # デプロイでは/home/sotanaka/dataに変更
+      device: /tmp/sotanaka/data/wordpress # デプロイでは/home/sotanaka/dataに変更
       o: bind
   db_website_files:
     driver: local
     driver_opts:
       type: none
-      device: /tmp/sotanaka/data # 同上
+      device: /tmp/sotanaka/data/mariadb # 同上
       o: bind
 
 # A docker-network that establishes the connection between your containers.(Aってことは、1つってことか？)
