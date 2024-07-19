@@ -4,8 +4,9 @@ FROM debian:12.5-slim
 
 # A Docker container that contains NGINX with TLSv1.2 or TLSv1.3 only.
 ## install nginx with specific version
-RUN apt-get update &&\
-    apt-get -y install nginx=1.22.*
+RUN apt-get update
+RUN apt-get -y install \
+    nginx=1.22.*
 
 ## install for debugging
 RUN apt-get -y install vim
@@ -13,8 +14,9 @@ RUN apt-get -y install vim
 ## install openssl
 ## make a directory for the SSL certificate
 ## create a self-signed certificate
-RUN apt-get -y install openssl &&\
-    mkdir etc/nginx/ssl_certs &&\
+RUN apt-get -y install \
+    openssl
+RUN mkdir etc/nginx/ssl_certs &&\
     openssl req -x509 -nodes -days 5 -newkey rsa:2048 -keyout /etc/nginx/ssl_certs/nginx.key -out /etc/nginx/ssl_certs/nginx.crt -subj '/CN=sotanaka.42.fr'
 
 ## copy the configuration file
