@@ -11,7 +11,7 @@ RUN apt-get -y install \
 ## install for debugging
 RUN apt-get -y install vim
 
-## install openssl
+## install openssl for SSL conecting
 ## make a directory for the SSL certificate
 ## create a self-signed certificate
 RUN apt-get -y install \
