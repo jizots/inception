@@ -22,7 +22,10 @@ RUN service mariadb start &&\
     mariadb --execute "CREATE USER '${MARIADB_USER1}'@'%' IDENTIFIED BY '${MARIADB_USER1_PASSWORD}';" &&\
     mariadb --execute "GRANT ALL PRIVILEGES ON ${MARIADB_DATABASE}.* TO '${MARIADB_USER1}'@'%';" &&\
     mariadb --execute "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${MARIADB_ROOT_PASSWORD}');" &&\
-    mariadb --execute "FLUSH PRIVILEGES;"
+    mariadb --execute "FLUSH PRIVILEGES;" &&\
+    # mariadb --execute "SET GLOBAL general_log = 'ON';" &&\
+    # mariadb --execute "SET GLOBAL general_log_file = '/var/log/mysql/general.log';" &&\
+    service mariadb stop
 
 ## set the user"mysql" can run the command "mariadbd".
 ## default mysql user has no home directory, shell, and path to the command "mariadbd".
@@ -35,8 +38,9 @@ RUN mkdir /home/mysql &&\
 RUN apt-get clean &&\
     rm -rf /var/lib/apt/lists/*
 
-## run services background.
 USER mysql
+
+# After container started, run services background.
 ENTRYPOINT ["mariadbd"]
 
 ## packages include in "apt-get install mariadb-server"

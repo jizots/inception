@@ -18,6 +18,9 @@ RUN apt-get -y install \
     php8.2-mysql \
     mariadb-client \
     sudo
+## install for debugging
+RUN apt-get -y install \
+    iproute2
 
 ## download WordPress
 RUN wget https://wordpress.org/latest.tar.gz &&\
@@ -45,6 +48,7 @@ RUN useradd -g ${EXECUTION_USER_GROUP} ${WORDPRESS_DB_USER} &&\
 RUN usermod -d /home/${EXECUTION_USER_GROUP} ${WORDPRESS_DB_USER}
 RUN usermod -s /bin/bash ${WORDPRESS_DB_USER}
 
+### set the user "${WORDPRESS_DB_USER}" can run the command "wp core config"
 RUN chown -R ${WORDPRESS_DB_USER}:${EXECUTION_USER_GROUP} /var/log
 RUN mkdir -p /run/php &&\
     chown -R ${WORDPRESS_DB_USER}:${EXECUTION_USER_GROUP} /run/php
@@ -52,7 +56,9 @@ RUN mkdir -p /run/php &&\
 ### set the user "${WORDPRESS_DB_USER}" can run the command "sudo" without password
 RUN echo "${WORDPRESS_DB_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-### set the user "${WORDPRESS_DB_USER}" can run the command "wp core config"
+### change www.conf file to listen on port 9000
+RUN sed -i 's|^listen =.*|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf
+
 USER ${WORDPRESS_DB_USER}
 WORKDIR /var/www/html
 

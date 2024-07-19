@@ -6,13 +6,16 @@ FROM debian:12.5-slim
 ## install nginx with specific version
 RUN apt-get update &&\
     apt-get -y install nginx=1.22.*
-    
+
+## install for debugging
+RUN apt-get -y install vim
+
 ## install openssl
 ## make a directory for the SSL certificate
 ## create a self-signed certificate
 RUN apt-get -y install openssl &&\
-mkdir etc/nginx/ssl_certs &&\
-openssl req -x509 -nodes -days 5 -newkey rsa:2048 -keyout /etc/nginx/ssl_certs/nginx.key -out /etc/nginx/ssl_certs/nginx.crt -subj '/CN=sotanaka.42.fr'
+    mkdir etc/nginx/ssl_certs &&\
+    openssl req -x509 -nodes -days 5 -newkey rsa:2048 -keyout /etc/nginx/ssl_certs/nginx.key -out /etc/nginx/ssl_certs/nginx.crt -subj '/CN=sotanaka.42.fr'
 
 ## copy the configuration file
 COPY requirements/nginx/conf/nginx.conf /etc/nginx/nginx.conf
