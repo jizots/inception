@@ -1,16 +1,4 @@
 services:
-### nginxコンテナの設定 ###
-  nginx_inception:
-    restart: always
-    build:
-      context: .
-      dockerfile: ./requirements/nginx/Dockerfile
-    image: nginx_inception
-    networks:
-      - net_inception
-    ports:
-      - "443:443"
-
 ### MariaDBコンテナの設定 ###
   mariadb_inception:
     restart: always
@@ -27,7 +15,7 @@ services:
       - net_inception
     volumes:
       - db_website_files:/var/lib/mysql
-    healthcheck:
+    healthcheck: # ヘルスチェックを行うことで、wordpressコンテナがmariadbコンテナに接続できる状況にしておく
       test: ["CMD-SHELL", "mariadb-admin ping -h localhost"] #MariaDBが起動していれば常に成功するコマンド
       interval: 5s
       retries: 5
@@ -48,7 +36,8 @@ services:
       - db_wordpress:/var/www/html/
     depends_on:
       mariadb_inception:
-        condition: service_healthy # mariadb_inceptionが正常に動作している場合にのみwordpress_inceptionを起動する
+        condition: service_healthy # mariadbが正常に動作している場合にのみwordpressを起動。逆になると、wordpressの初期設定でDBに接続できないエラーになる。
+
     environment:
       - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
       - WORDPRESS_DB_HOST_NAMEONLY=${WORDPRESS_DB_HOST_NAMEONLY}
@@ -60,6 +49,22 @@ services:
       - WORDPRESS_ADMIN_USER=${WORDPRESS_ADMIN_USER}
       - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
       - WORDPRESS_ADMIN_EMAIL=${WORDPRESS_ADMIN_EMAIL}
+
+### nginxコンテナの設定 ###
+  nginx_inception:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./requirements/nginx/Dockerfile
+    image: nginx_inception
+    networks:
+      - net_inception
+    volumes:
+      - db_wordpress:/var/www/html/
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress_inception
 
 # A volume that contains your WordPress database.
 # A second volume that contains your WordPress website files.
