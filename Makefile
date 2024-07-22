@@ -2,11 +2,19 @@
 
 DOCKER_COMPOSE_DIR = ./srcs
 DOCKER_COMPOSE_FILE = $(DOCKER_COMPOSE_DIR)/docker-compose.yml
-DOCKER_VOLUME_DIR_MARIADB = /tmp/sotanaka/data/mariadb/
-DOCKER_VOLUME_DIR_WORDPRESS = /tmp/sotanaka/data/wordpress/
+DOCKER_VOLUME_DIR_ROOT = /tmp/sotanaka/
+DOCKER_VOLUME_DIR_PAIR = $(DOCKER_VOLUME_DIR_ROOT)data/
+DOCKER_VOLUME_DIR_MARIADB = $(DOCKER_VOLUME_DIR_PAIR)mariadb/
+DOCKER_VOLUME_DIR_WORDPRESS = $(DOCKER_VOLUME_DIR_PAIR)wordpress/
 
 up: build
 	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
+
+dir:
+	mkdir -p $(DOCKER_VOLUME_DIR_ROOT)
+	mkdir -p $(DOCKER_VOLUME_DIR_PAIR)
+	mkdir -p $(DOCKER_VOLUME_DIR_MARIADB)
+	mkdir -p $(DOCKER_VOLUME_DIR_WORDPRESS)
 
 down:
 	docker compose -f $(DOCKER_COMPOSE_FILE) down -v
@@ -19,7 +27,7 @@ clean:
 ps:
 	docker compose -f $(DOCKER_COMPOSE_FILE) ps
 
-build:
+build: dir
 	docker compose -f $(DOCKER_COMPOSE_FILE) build --no-cache
 
 # For debug
