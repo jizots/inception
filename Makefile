@@ -10,6 +10,9 @@ up: build
 
 down:
 	docker compose -f $(DOCKER_COMPOSE_FILE) down -v
+
+# For debug. Volumeが残っているとまた同じデータが使われるので削除する
+clean:
 	rm -rf $(DOCKER_VOLUME_DIR_MARIADB)*
 	rm -rf $(DOCKER_VOLUME_DIR_WORDPRESS)*
 
@@ -19,4 +22,5 @@ ps:
 build:
 	docker compose -f $(DOCKER_COMPOSE_FILE) build --no-cache
 
-re:	down up
+# For debug
+re:	down clean up
