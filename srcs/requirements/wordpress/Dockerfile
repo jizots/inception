@@ -20,7 +20,8 @@ RUN apt-get -y install \
     sudo
 ## install for debugging
 RUN apt-get -y install \
-    iproute2
+    iproute2 \
+    vim
 
 ## download WordPress
 RUN wget https://wordpress.org/latest.tar.gz &&\
