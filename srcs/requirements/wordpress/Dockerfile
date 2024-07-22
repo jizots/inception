@@ -59,7 +59,7 @@ RUN echo "${WORDPRESS_DB_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ### change www.conf file to listen on port 9000
 RUN sed -i 's|^listen =.*|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf
-RUN sed -i 's|^;security.limit_extensions = *|security.limit_extensions = .php .php3 .php4 .php5 .php7 .php8 .html .htm .css .webp .woff2 |' /etc/php/8.2/fpm/pool.d/www.conf
+RUN sed -i 's|^;security.limit_extensions = *|security.limit_extensions = .js .php .php3 .php4 .php5 .php7 .php8 .html .htm .css .webp .woff2 |' /etc/php/8.2/fpm/pool.d/www.conf
 
 USER ${WORDPRESS_DB_USER}
 WORKDIR /var/www/html
