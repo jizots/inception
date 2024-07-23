@@ -33,5 +33,15 @@ if ! wp core is-installed; then
     --skip-email
 fi
 
+## Edit権限を持つユーザーを作成する。--porcelainで登録結果(passwordなど)をログに出力しないようにした。
+if ! wp user list --role=editor --field=user_login --allow-root | grep -q "^${WORDPRESS_EDITOR_USER}$"; then
+  wp user create \
+    ${WORDPRESS_EDITOR_USER} \
+    ${WORDPRESS_EDITOR_USER}@example.com \
+    --role=editor \
+    --user_pass=${WORDPRESS_EDITOR_PASSWORD} \
+    --porcelain
+fi
+
 # php-fpmを起動
 exec sudo -E php-fpm8.2 -F
