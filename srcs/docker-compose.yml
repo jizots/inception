@@ -70,6 +70,20 @@ services:
     depends_on:
       - wordpress_inception
 
+#### bonus ####
+### Adminerコンテナの設定 ###
+  adminer_inception:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./requirements/adminer/Dockerfile
+    image: adminer_inception
+    networks:
+      - net_inception
+    init: true
+    depends_on:
+      - nginx_inception
+
 # A volume that contains your WordPress database.
 # A second volume that contains your WordPress website files.
 volumes:

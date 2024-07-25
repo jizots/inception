@@ -9,5 +9,5 @@
 
 # ignore all other Container files
 ./requirements/nginx/*
+./requirements/wordpress/*
 ./requirements/mariadb/*
-./requirements/adminer/*

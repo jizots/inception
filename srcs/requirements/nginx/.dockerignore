@@ -10,3 +10,4 @@
 # ignore all other Container files
 ./requirements/wordpress/*
 ./requirements/mariadb/*
+./requirements/adminer/*
