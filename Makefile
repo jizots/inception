@@ -27,8 +27,12 @@ clean:
 ps:
 	docker compose -f $(DOCKER_COMPOSE_FILE) ps
 
+# 古いイメージを削除
+image-prune:
+	docker image prune -f
+
 build: dir
 	docker compose -f $(DOCKER_COMPOSE_FILE) build --no-cache
 
 # For debug
-re:	down clean up
+re:	down clean re up
