@@ -1,7 +1,7 @@
 services:
 ### MariaDBコンテナの設定 ###
   mariadb_inception:
-    restart: always
+    restart: unless-stopped
     build:
       context: .
       dockerfile: ./requirements/mariadb/Dockerfile
@@ -23,7 +23,7 @@ services:
 
 ### WordPressコンテナの設定 ###
   wordpress_inception:
-    restart: always
+    restart: unless-stopped
     build:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
@@ -55,7 +55,7 @@ services:
 
 ### nginxコンテナの設定 ###
   nginx_inception:
-    restart: always
+    restart: unless-stopped
     build:
       context: .
       dockerfile: ./requirements/nginx/Dockerfile
@@ -73,7 +73,7 @@ services:
 #### bonus ####
 ### Adminerコンテナの設定 ###
   adminer_inception:
-    restart: always
+    restart: unless-stopped
     build:
       context: .
       dockerfile: ./requirements/adminer/Dockerfile
