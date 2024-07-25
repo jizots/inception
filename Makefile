@@ -35,4 +35,4 @@ build: dir
 	docker compose -f $(DOCKER_COMPOSE_FILE) build --no-cache
 
 # For debug
-re:	down clean re up
+re:	down clean up image-prune
