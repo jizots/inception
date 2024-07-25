@@ -14,7 +14,7 @@ RUN mkdir -p /var/www/html/adminer
 RUN wget "https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php" -O /var/www/html/adminer/index.php
 
 ## start the server.
-CMD ["php", "-S", "0.0.0.0:9042", "-t", "/var/www/html/adminer"]
+ENTRYPOINT ["php", "-S", "0.0.0.0:9042", "-t", "/var/www/html/adminer"]
 
 ## packages include in "apt-get install xxx"
 # php8.2-cli: libargon2-1 libbsd0 libedit2 libicu72 libmagic-mgc libmagic1 libsodium23 libssl3 libxml2 media-types
