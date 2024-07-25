@@ -15,6 +15,7 @@ services:
       - net_inception
     volumes:
       - db_website_files:/var/lib/mysql
+    init: true
     healthcheck: # ヘルスチェックを行うことで、wordpressコンテナがmariadbコンテナに接続できる状況にしておく
       test: ["CMD-SHELL", "mariadb-admin ping -h localhost"] #MariaDBが起動していれば常に成功するコマンド
       interval: 5s
@@ -30,13 +31,6 @@ services:
         - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
         - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
     image: wordpress_inception
-    networks:
-      - net_inception
-    volumes:
-      - db_wordpress:/var/www/html/
-    depends_on:
-      mariadb_inception:
-        condition: service_healthy # mariadbが正常に動作している場合にのみwordpressを起動。逆になると、wordpressの初期設定でDBに接続できないエラーになる。
     environment:
       - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
       - WORDPRESS_DB_HOST_NAMEONLY=${WORDPRESS_DB_HOST_NAMEONLY}
@@ -50,6 +44,14 @@ services:
       - WORDPRESS_ADMIN_EMAIL=${WORDPRESS_ADMIN_EMAIL}
       - WORDPRESS_EDITOR_USER=${WORDPRESS_EDITOR_USER}
       - WORDPRESS_EDITOR_PASSWORD=${WORDPRESS_EDITOR_PASSWORD}
+    networks:
+      - net_inception
+    volumes:
+      - db_wordpress:/var/www/html/
+    init: true
+    depends_on:
+      mariadb_inception:
+        condition: service_healthy # mariadbが正常に動作している場合にのみwordpressを起動。逆になると、wordpressの初期設定でDBに接続できないエラーになる。
 
 ### nginxコンテナの設定 ###
   nginx_inception:
@@ -64,6 +66,7 @@ services:
       - db_wordpress:/var/www/html/
     ports:
       - "443:443"
+    init: true
     depends_on:
       - wordpress_inception
 
