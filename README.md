@@ -262,5 +262,6 @@ Dockerfileなどで、コンテナ起動時のスクリプトを確認する。
 * Read about PID 1
 [PID 1問題](https://text.superbrothers.dev/200328-how-to-avoid-pid-1-problem-in-kubernetes/)  
 * WordPress database, there must be two users  
+ユーザー設定のスクリプトと、実際のwp-adminでのログイン。
 * Your volumes will be available in the /home/login/data.  
 * Set up Adminer.  
