@@ -233,6 +233,9 @@ makeをインストール
 [Docker Engine インストール（Debian 向け）](https://matsuand.github.io/docs.docker.jp.onthefly/engine/install/debian/)  
 現在のユーザーをdockerのグループに追加して適用 ``sudo usermod -aG docker debian``  
 
+## ホストからゲストへのデータコピー（レビュー用にcloneしたディレクトリ）
+``scp -r -P 8042 /path/of/host/* debian@127.0.0.1:/path/to/guest/``  
+  
 # サブジェクト通りにできているかの検証方法
 * Each service has to run in a dedicated container.  
 .ymlの記述、コンテナを稼働させて``docker container ls -a``で確認  
