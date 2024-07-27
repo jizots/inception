@@ -222,6 +222,12 @@ inceptionの文脈では、データベースとは何か、どのような利�
 [How to download Adminer1](https://unix.stackexchange.com/questions/420668/how-to-download-adminer-with-wget)  
 [How to download Adminer2](https://kinsta.com/jp/blog/adminer/)  
 
+# クラスターでの操作
+## 仮想マシンの設定
+わたしはDebianを利用した。  
+## Dockerの設定
+[Docker Engine インストール（Debian 向け）](https://matsuand.github.io/docs.docker.jp.onthefly/engine/install/debian/)  
+
 # サブジェクト通りにできているかの検証方法
 * Each service has to run in a dedicated container.  
 .ymlの記述、コンテナを稼働させて``docker container ls -a``で確認  
