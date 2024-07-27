@@ -224,10 +224,14 @@ inceptionの文脈では、データベースとは何か、どのような利�
 
 # クラスターでの操作
 ## 仮想マシンの設定
-わたしはDebianを利用した。  
-ufwをインストールしてssh接続を許可（必要かわからん） → VirtualBoxのポストフォーワーディングも設定　→ sshdとufwを起動　→ makeをインストール  
+わたしはDebianを利用した。(ユーザー名もパスワードもdebian。ルートユーザーは作成してない)  
+ufwをインストールしてssh接続を許可（ホストから操作しないなら不要）  
+VirtualBoxのポストフォーワーディングも設定  
+sshdとufwを起動  
+makeをインストール  
 ## Dockerの設定
 [Docker Engine インストール（Debian 向け）](https://matsuand.github.io/docs.docker.jp.onthefly/engine/install/debian/)  
+現在のユーザーをdockerのグループに追加して適用 ``sudo usermod -aG docker debian``  
 
 # サブジェクト通りにできているかの検証方法
 * Each service has to run in a dedicated container.  
