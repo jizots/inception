@@ -52,6 +52,7 @@ RUN usermod -s /bin/bash ${WORDPRESS_DB_USER}
 
 ### set the user "${WORDPRESS_DB_USER}" can run the command "wp core config"
 RUN chown -R ${WORDPRESS_DB_USER}:${EXECUTION_USER_GROUP} /var/log
+RUN chown -R ${WORDPRESS_DB_USER}:${EXECUTION_USER_GROUP} /var/www/html
 RUN mkdir -p /run/php &&\
     chown -R ${WORDPRESS_DB_USER}:${EXECUTION_USER_GROUP} /run/php
 
