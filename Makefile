@@ -5,7 +5,7 @@ DOCKER_COMPOSE_DIR = ./srcs
 DOCKER_COMPOSE_FILE = $(DOCKER_COMPOSE_DIR)/docker-compose.yml
 
 # ボリュームをマウントするディレクトリのパス
-DOCKER_VOLUME_DIR_ROOT = /tmp/sotanaka/
+DOCKER_VOLUME_DIR_ROOT = /home/sotanaka/
 DOCKER_VOLUME_DIR_PAIR = $(DOCKER_VOLUME_DIR_ROOT)data/
 DOCKER_VOLUME_DIR_MARIADB = $(DOCKER_VOLUME_DIR_PAIR)mariadb/
 DOCKER_VOLUME_DIR_WORDPRESS = $(DOCKER_VOLUME_DIR_PAIR)wordpress/
@@ -21,10 +21,10 @@ up: build add_host
 	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
 
 dir:
-	mkdir -p $(DOCKER_VOLUME_DIR_ROOT)
-	mkdir -p $(DOCKER_VOLUME_DIR_PAIR)
-	mkdir -p $(DOCKER_VOLUME_DIR_MARIADB)
-	mkdir -p $(DOCKER_VOLUME_DIR_WORDPRESS)
+	sudo mkdir -p $(DOCKER_VOLUME_DIR_ROOT)
+	sudo mkdir -p $(DOCKER_VOLUME_DIR_PAIR)
+	sudo mkdir -p $(DOCKER_VOLUME_DIR_MARIADB)
+	sudo mkdir -p $(DOCKER_VOLUME_DIR_WORDPRESS)
 
 down:
 	docker compose -f $(DOCKER_COMPOSE_FILE) down -v
