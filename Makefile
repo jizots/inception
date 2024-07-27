@@ -31,8 +31,8 @@ down:
 
 # For debug. Volumeが残っているとまた同じデータが使われるので削除する
 clean:
-	rm -rf $(DOCKER_VOLUME_DIR_MARIADB)*
-	rm -rf $(DOCKER_VOLUME_DIR_WORDPRESS)*
+	sudo rm -rf $(DOCKER_VOLUME_DIR_MARIADB)*
+	sudo rm -rf $(DOCKER_VOLUME_DIR_WORDPRESS)*
 
 ps:
 	docker compose -f $(DOCKER_COMPOSE_FILE) ps
