@@ -1,8 +1,8 @@
 # inceptionの最終成果物はなに？
 ``make``とコマンドを打つ.  
-https://login.42.fr/ にアクセスする.  
-作成したサイトにアクセスできる. 
-
+https://sotanaka.42.fr/ にアクセスする.  
+作成したサイトにアクセスできる.   
+https://adminer.42.fr/  
 # Dockerとはなにか
 軽量な仮想化マシン、といったん考えよう。  
 ## 仮想化の技術の1つ
@@ -224,9 +224,14 @@ inceptionの文脈では、データベースとは何か、どのような利�
 
 # クラスターでの操作
 ## 仮想マシンの設定
-わたしはDebianを利用した。  
+わたしはDebianを利用した。(ユーザー名もパスワードもdebian。ルートユーザーは作成してない)  
+ufwをインストールしてssh接続を許可（ホストから操作しないなら不要）  
+VirtualBoxのポストフォーワーディングも設定  
+sshdとufwを起動  
+makeをインストール  
 ## Dockerの設定
 [Docker Engine インストール（Debian 向け）](https://matsuand.github.io/docs.docker.jp.onthefly/engine/install/debian/)  
+現在のユーザーをdockerのグループに追加して適用 ``sudo usermod -aG docker debian``  
 
 # サブジェクト通りにできているかの検証方法
 * Each service has to run in a dedicated container.  
