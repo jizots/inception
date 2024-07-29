@@ -1,8 +1,7 @@
 # inceptionの最終成果物はなに？
-``make``とコマンドを打つ.  
-https://sotanaka.42.fr/ にアクセスする.  
-作成したサイトにアクセスできる.   
-https://adminer.42.fr/  
+``make``とコマンドを打つと、サービス提供の準備がされる。  
+結果、https://sotanaka.42.fr/ にアクセスすと、作成したサイトにアクセスできる。   
+またBonusでは、https://adminer.42.fr/ にアクセスするとadminerからデータベースにアクセスできる。   
 # Dockerとはなにか
 軽量な仮想化マシン、といったん考えよう。  
 ## 仮想化の技術の1つ
@@ -200,14 +199,14 @@ inceptionの文脈では、データベースとは何か、どのような利�
 なので、ソフトのダウンロードや初期設定はDockerfileや.ymlに必ず実行するコマンドとして、全て記述しなければならない。  
 例：nginxの設定ファイル、MariaDBのユーザー設定、Wordpressのユーザーやサイト設定  
 ## nginx
-ソフトリストを最新にする→nginxをインストールする→opensslをインストールする→自己署名証明書を作成する→confファイルを要件に合わせる→nginxを起動する  
+ソフトリストを最新にする→nginx/opensslをインストール→自己署名証明書を作成→confファイルを要件に合わせる→nginxを起動  
 
 [nginxのインストール](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)  
 [自己署名証明書の識別名の入力を自動化1](https://qiita.com/3244/items/780469306a3c3051c9fe#%E8%AD%98%E5%88%A5%E5%90%8D%E3%81%AE%E5%85%A5%E5%8A%9B%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96%E3%81%99%E3%82%8B)  
 [自己署名証明書の識別名の入力を自動化2](https://kazuhira-r.hatenablog.com/entry/2023/04/15/193035)  
 
 ## MariaDB
-リストを最新にする→mariadbをインストール→mariadbをスタート→データベース、ユーザーなどを作成  
+リストを最新にする→MariaDBをインストール→port/bind-addressを設定→MaridDBに新しいデータベースとユーザーを作成→mariadbをスタート  
 [MySQLの使い方](https://www.javadrive.jp/mysql/)  
 
 ## WordPress
