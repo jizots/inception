@@ -1,4 +1,0 @@
-flask
-pymysql
-redis
-cryptography
