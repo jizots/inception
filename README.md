@@ -246,8 +246,8 @@ makeをインストール
 .ymlの記述、コンテナを稼働させて``docker container ls -a``で確認  
 * the containers must be built either from the penultimate stable version of Alpine or Debian  
 https://hub.docker.com/_/debian  
-で'-slim'で検索して、最新のより1つ古いバージョンであることを確認
-バージョンをハードコードしているので、最新版の1つ古いversionよりも古い可能性があるが、これに対するディフェンスは「常に最新版より一つ古いものを利用していると、コマンドなどが変化する可能性があるので、実装時点の最新版よりも1つ古いものをハードコードした」。
+で'-slim'で検索して、最新のより1つ古いバージョンであることを確認  
+バージョンをハードコードしているので、最新版の1つ古いversionよりも古い可能性があるが、これに対するディフェンスは「常に最新版より一つ古いものを利用していると、コマンドなどが変化するリスクがある。そのため、実装時点の最新版よりも1つ古いものをハードコードしてリスクを低減している」
 * A Docker container that contains NGINX with TLSv1.2 or TLSv1.3 only  
 Dockerfileのinstall記述と``openssl s_client -connect sotanaka.42.fr:443 -tls1_2"``  
 * A Docker container that contains WordPress + php-fpm (it must be installed and configured) only without nginx.  
