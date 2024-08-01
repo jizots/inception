@@ -41,8 +41,8 @@ MacやWindowsのDockerEngineにはLinuxOSが搭載されいる、という感じ
 
 
 # Dockerで利用する技術、ポイント
-container, image, Dockerfile, DockerVolume, Docker Network, docker-composeの6つを簡単に説明する。  
-## container
+①container, ②image, ③Dockerfile, ④DockerVolume, ⑤Docker Network, ⑥docker-composeの6つを簡単に説明する。  
+## ①container
 特定のコマンドを実行するために作られる、**ホストマシン上の隔離された領域**のこと。  
 仮想マシン的な機能、という理解で大きな問題はない。  
 例えば、コンテナの中で、ホストOSとは異なるverのpythonをインストールして、プログラムを実行することもできる。  
@@ -52,7 +52,7 @@ container, image, Dockerfile, DockerVolume, Docker Network, docker-composeの6�
 ### 課題で期待される機能の分離された状態の図
 <img width="667" alt="Screenshot 2024-08-02 at 6 59 56" src="https://github.com/user-attachments/assets/b4d5f563-9097-41be-a518-d423bb678604">
 
-## image
+## ②image
 コンテナを立ち上げるためのパッケージ。  
 OS、インストールされているソフトなどが全て含まれていると思えばよい（なので容量が大きい）。  
 imageがあれば、インターネット通信を切ってもコンテナを立ち上げることができる。  
@@ -64,7 +64,7 @@ imageがあれば、インターネット通信を切ってもコンテナを立
 - デフォルト命令（wordpress startなど）はなにか  
 よく利用されるイメージは、DockerHubに公開されているので、そこからダウンロードすればOk。    
 
-## Dockerfile
+## ③Dockerfile
 imageを、カスタマイズして生成できる機能（ファイル）。  
 既存の公開されたイメージは便利ではあるものの、自分の用途のためにはカスタマイズする必要があるかもしれない。  
 例えば、nginxとMariaDBがセットになって、かつBraveも入ったコンテナを利用したいけど、そんなのは既存ではないなあ。とか。  
@@ -96,7 +96,7 @@ Dockerfileからイメージを生成するときに、.dockerignoreを2つの�
 [.dockerignoreが効かない？.gitignoreとは書き方が違うよ！](https://qiita.com/yucatio/items/f5d23043228cc35fc763)  
 [.dockerignoreに記載すべきファイルとは](https://shisho.dev/blog/posts/how-to-use-dockerignore/)  
 
-## docker volume
+## ④docker volume
 データ永続化の仕組み。  
 コンテナは頻繁に破棄する前提みたい。ソフトのセキュリティアップデートとかしやすいのかな。  
 なので、データを保管するMariaDBが入ったコンテナも捨てることがある。  
@@ -122,11 +122,11 @@ inceptionではまったポイントは、複数のコンテナのバインド�
 これによって、先にイメージのビルドプロセスで作成したファイルが、コンテナの立ち上げ時には消えてしまっていました。。(別のコンテナの内容で上書きされる)  
 コンテナによってバインド先は分けましょう。  
 
-## docker network
+## ⑤docker network
 [３部: ネットワーク](https://zenn.dev/suzuki_hoge/books/2022-03-docker-practice-8ae36c33424b59/viewer/3-7-network)  
 [Compose の ネットワーク機能](https://docs.docker.jp/compose/networking.html)  
 
-## docker-compose
+## ⑥docker-compose
 初心者向けチュートリアルでは、コマンドで``docker run xx``から始まり、``docker image build xx``やそれらに付随する、オプション（ポートやパスワード）設定を行っていると思います。  
 docker-composeはそれらのコマンドを、何回も打つのめんどくさいし、1つのファイルにまとめて記述しちゃおう。みたいな機能（ファイル）です。  
 [３部: Docker Compose](https://zenn.dev/suzuki_hoge/books/2022-03-docker-practice-8ae36c33424b59/viewer/3-8-docker-compose)  
