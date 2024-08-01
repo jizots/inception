@@ -6,6 +6,11 @@
 またBonusでは、(私の設計だと)https://adminer.42.fr/ にアクセスするとadminerからデータベースにアクセスできる。  
 <img width="635" alt="Screenshot 2024-07-29 at 10 50 06" src="https://github.com/user-attachments/assets/6298bac3-dddd-4452-9730-d49ae1bd18e8">
 
+全体としての課題の意味は、以下を知ること、かな。
+* 大規模な開発での機能（サーバーとアプリなど）の分離  
+* 分離した機能同士のコミュニケーション  
+* コミュニケーションのためのツール  
+
 # Dockerとはなにか
 軽量な仮想化マシン、といったん考えよう。  
 ## 仮想化の技術の1つ
@@ -186,8 +191,8 @@ inceptionの文脈では、サーバー機能、リバースプロキシ機能�
 [remote_addrとかx-forwarded-forとかx-real-ipとか](https://christina04.hatenablog.com/entry/2016/10/25/190000)  
 
 ## [WordPress](https://online.dhw.co.jp/kuritama/about-wordpress/)
-.phpでソースコードが記述された、サイト作成、管理の.phpの集合体。つまり、PIDを持って動作するようなアプリではない。  
-サイト作成で広く利用される。  
+サイト作成、管理のツールとして広く利用される。
+.phpの集合体で、呼び出されるたびに一時的に実行されるプロセス。つまり、デーモンとして常駐するようなアプリではない。    
 inceptionの文脈では、サイト構築が簡単にできるツールの利用方法を知る、か。  
 [PHPとは─WordPressでの使われ方を解説](https://kinsta.com/jp/knowledgebase/what-is-php/)  
 .php形式の
