@@ -5,7 +5,7 @@
 
 またBonusでは、(私の設計だと)https://adminer.42.fr/ にアクセスするとadminerからデータベースにアクセスできる。  
 <img width="635" alt="Screenshot 2024-07-29 at 10 50 06" src="https://github.com/user-attachments/assets/6298bac3-dddd-4452-9730-d49ae1bd18e8">
-
+  
 全体としての課題の意味は、以下を知ること、かな。
 * 大規模な開発での機能（サーバーとアプリなど）の分離  
 * 分離した機能同士のコミュニケーション  
