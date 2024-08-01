@@ -9,7 +9,7 @@
   
 ## 全体としての課題の意味(感想)
 * 大規模な開発での機能（サーバーとアプリなど）の分離  
-* 分離した機能同士のコミュニケーション  
+* 分離した機能同士のコミュニケーションの方法  
 * コミュニケーションのためのツール  
 
 # Dockerとはなにか
@@ -38,6 +38,10 @@ MacやWindowsのDockerEngineにはLinuxOSが搭載されいる、という感じ
 ## Ref
 [仮想化とは:「Docker よくわからない」を終わりにする本](https://zenn.dev/suzuki_hoge/books/2022-03-docker-practice-8ae36c33424b59/viewer/1-2-virtualization)  
 [仕組みと使い方がわかる Docker&Kubernetesのきほんのきほん](https://amzn.to/4eK0uVv)  
+
+## 課題で期待される機能の分離された状態の図
+<img width="667" alt="Screenshot 2024-08-02 at 6 59 56" src="https://github.com/user-attachments/assets/b4d5f563-9097-41be-a518-d423bb678604">
+
 
 # Dockerで利用する技術、ポイント
 それぞれ簡単に解説する。  
