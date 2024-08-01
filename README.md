@@ -1,6 +1,6 @@
 # inceptionの最終成果物はなに？
-``make``とコマンドを打つと、サービス提供の準備がされる。  
-結果、https://sotanaka.42.fr/ にアクセスすと、作成したサイトにアクセスできる。  
+``make``とコマンドを打つと、webサイトのデプロイが自動的に行われる。  
+結果、https://sotanaka.42.fr/ にアクセスすと、WordPressなどで作成したサイトにアクセスできる。  
 <img width="528" alt="Screenshot 2024-07-29 at 10 48 24" src="https://github.com/user-attachments/assets/b262fd3f-9074-43e3-8937-600f72ba2d4e">
 
 またBonusでは、(私の設計だと)https://adminer.42.fr/ にアクセスするとadminerからデータベースにアクセスできる。  
