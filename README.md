@@ -39,19 +39,19 @@ MacやWindowsのDockerEngineにはLinuxOSが搭載されいる、という感じ
 [仮想化とは:「Docker よくわからない」を終わりにする本](https://zenn.dev/suzuki_hoge/books/2022-03-docker-practice-8ae36c33424b59/viewer/1-2-virtualization)  
 [仕組みと使い方がわかる Docker&Kubernetesのきほんのきほん](https://amzn.to/4eK0uVv)  
 
-### 課題で期待される機能の分離された状態の図
-<img width="667" alt="Screenshot 2024-08-02 at 6 59 56" src="https://github.com/user-attachments/assets/b4d5f563-9097-41be-a518-d423bb678604">
-
 
 # Dockerで利用する技術、ポイント
-それぞれ簡単に解説する。  
+container, image, Dockerfile, DockerVolume, Docker Network, docker-composeの6つを簡単に説明する。  
 ## container
 特定のコマンドを実行するために作られる、**ホストマシン上の隔離された領域**のこと。  
 仮想マシン的な機能、という理解で大きな問題はない。  
 例えば、コンテナの中で、ホストOSとは異なるverのpythonをインストールして、プログラムを実行することもできる。  
 他にはホストOSとは異なるディストリビューション（Debian／Aplineなど）も使いたい放題。  
 実際は、LinuxのNamespaceという機能で分離された１プロセスでしかない。  
-　　
+
+### 課題で期待される機能の分離された状態の図
+<img width="667" alt="Screenshot 2024-08-02 at 6 59 56" src="https://github.com/user-attachments/assets/b4d5f563-9097-41be-a518-d423bb678604">
+
 ## image
 コンテナを立ち上げるためのパッケージ。  
 OS、インストールされているソフトなどが全て含まれていると思えばよい（なので容量が大きい）。  
@@ -63,6 +63,7 @@ imageがあれば、インターネット通信を切ってもコンテナを立
 - どういう設定ファイルを配置しているか  
 - デフォルト命令（wordpress startなど）はなにか  
 よく利用されるイメージは、DockerHubに公開されているので、そこからダウンロードすればOk。    
+
 ## Dockerfile
 imageを、カスタマイズして生成できる機能（ファイル）。  
 既存の公開されたイメージは便利ではあるものの、自分の用途のためにはカスタマイズする必要があるかもしれない。  
@@ -124,6 +125,7 @@ inceptionではまったポイントは、複数のコンテナのバインド�
 ## docker network
 [３部: ネットワーク](https://zenn.dev/suzuki_hoge/books/2022-03-docker-practice-8ae36c33424b59/viewer/3-7-network)  
 [Compose の ネットワーク機能](https://docs.docker.jp/compose/networking.html)  
+
 ## docker-compose
 初心者向けチュートリアルでは、コマンドで``docker run xx``から始まり、``docker image build xx``やそれらに付随する、オプション（ポートやパスワード）設定を行っていると思います。  
 docker-composeはそれらのコマンドを、何回も打つのめんどくさいし、1つのファイルにまとめて記述しちゃおう。みたいな機能（ファイル）です。  
