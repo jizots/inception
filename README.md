@@ -23,23 +23,23 @@
 Born2BeRootでは、ホスト型仮想化（ホストOS > 仮想化ソフトウエア > **ゲストOS**　> ゲスト用ソフト）を利用していた。  
 Dockerはコンテナ型仮想化（ホストOS > 仮想化ソフトウエア > ゲスト用ソフト）という感じ。  
   
-## ホスト型とコンテナ型の”違い”と”メリット”
-### 違い
+### ホスト型とコンテナ型の”違い”と”メリット”
+#### 違い
 - コンテナ型仮想化(Docker)では、ゲストOSが不要  
 え、じゃあなんのOSで動いてるの？というと、ホストOSが持っているLinuxカーネルを間借りして動いている。  
 MacやWindowsのDockerEngineにはLinuxOSが搭載されいる、という感じ  
 - Dockerでは、Linuxをベースとしたシステム設計になる
 
-### メリット
+#### メリット
 - 動作が軽い  
 - 同じ環境を他のハードでも再現しやすい  
 つまり、「私はMac」「うちはWin」「ワイはDebian」みたいな時に、OSの違いを乗り越えて、Docker上（同じ環境の上）で開発や確認ができる。  
 
-## Ref
+### Ref
 [仮想化とは:「Docker よくわからない」を終わりにする本](https://zenn.dev/suzuki_hoge/books/2022-03-docker-practice-8ae36c33424b59/viewer/1-2-virtualization)  
 [仕組みと使い方がわかる Docker&Kubernetesのきほんのきほん](https://amzn.to/4eK0uVv)  
 
-## 課題で期待される機能の分離された状態の図
+### 課題で期待される機能の分離された状態の図
 <img width="667" alt="Screenshot 2024-08-02 at 6 59 56" src="https://github.com/user-attachments/assets/b4d5f563-9097-41be-a518-d423bb678604">
 
 
