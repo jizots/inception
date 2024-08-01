@@ -45,9 +45,8 @@ MacやWindowsのDockerEngineにはLinuxOSが搭載されいる、という感じ
 ## ①container
 特定のコマンドを実行するために作られる、**ホストマシン上の隔離された領域**のこと。  
 仮想マシン的な機能、という理解で大きな問題はない。  
-例えば、コンテナの中で、ホストOSとは異なるverのpythonをインストールして、プログラムを実行することもできる。  
-他にはホストOSとは異なるディストリビューション（Debian／Aplineなど）も使いたい放題。  
-実際は、LinuxのNamespaceという機能で分離された１プロセスでしかない。  
+例えば、コンテナの中で、ホストOSとは異なるディストリビューション（Debian／Aplineなど）を入れて、その上でホストOSとは異なるverのpythonをインストールして、プログラムを実行することもできる。    
+"仮想マシン的"というのは、実際には、LinuxのNamespaceという機能で分離された１プロセスでしかないから。  
 
 ### 課題で期待される機能の分離された状態の図
 <img width="667" alt="Screenshot 2024-08-02 at 6 59 56" src="https://github.com/user-attachments/assets/b4d5f563-9097-41be-a518-d423bb678604">
