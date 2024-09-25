@@ -41,7 +41,14 @@ MacやWindowsのDockerEngineにはLinuxOSが搭載されいる、という感じ
 
 
 # Dockerで利用する技術、ポイント
-①container, ②image, ③Dockerfile, ④DockerVolume, ⑤Docker Network, ⑥docker-composeの6つを簡単に説明する。  
+6つあり、  
+①container  
+②image  
+③Dockerfile  
+④DockerVolume  
+⑤Docker Network  
+⑥docker-compose
+を簡単に説明する。   
 ## ①container
 特定のコマンドを実行するために作られる、**ホストマシン上の隔離された領域**のこと。  
 仮想マシン的な機能、という理解で大きな問題はない。  
